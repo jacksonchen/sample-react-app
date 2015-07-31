@@ -1,2 +1,2 @@
 # sample-react-app
-Sample React App
+Sample app using [React.js](http://facebook.github.io/react/) to read and responsively display app listing details
