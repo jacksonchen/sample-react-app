@@ -1,19 +1,17 @@
-var React = require('react');
+var React = require('react'),
+    AppTable = require('./components/AppTable');
 
 var App = React.createClass({
   render: function(){
     return (
-      // <div className="container">
-      //   <div className="row">
-      //     <ListContainer />
-      //   </div>
-      // </div>
-      <p>Test</p>
+      <table>
+        <AppTable />
+      </table>
     )
   }
 })
 
 React.render(
-  <App />
+  <App />,
   document.getElementById('app')
 )
