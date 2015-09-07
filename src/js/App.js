@@ -4,14 +4,15 @@ var React = require('react'),
 var App = React.createClass({
   render: function(){
     return (
-      <table>
+      <div>
+        <h1>A collection of Android Apps</h1>
         <AppTable />
-      </table>
-    )
+      </div>
+    );
   }
-})
+});
 
 React.render(
   <App />,
   document.getElementById('app')
-)
+);

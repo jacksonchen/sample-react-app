@@ -1,9 +1,6 @@
 var React = require('react'),
     todoStore = require('../stores/todoStore'),
-    fs = require('fs');
     todoActions = require('../actions/todoActions');
-
-var appsDir = "../../../resources/data";
 
 var AppTable = React.createClass({
   getInitialState: function() {
@@ -13,8 +10,7 @@ var AppTable = React.createClass({
     }
   },
   componentDidMount: function() {
-    todoStore.addChangeListener(this._onChange)
-    loadStore();
+    todoStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
@@ -35,7 +31,9 @@ var AppTable = React.createClass({
     })
   },
   render: function() {return (
-    <p>Lists: {Object.keys(this.state.list)}</p>
+    <div className="AppTable">
+    Lists: {Object.keys(this.state.list)}
+    </div>
   )}
 });
 

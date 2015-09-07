@@ -1,34 +1,40 @@
 var EventEmitter = require('events').EventEmitter,
     objectAssign = require('react/lib/Object.assign'),
-    fs = require('fs'),
+    obj = require('../../../resources/data/com.facebook.katana-258882'),
     _ = require('lodash');
 
 var CHANGE_EVENT = 'change',
-    appsDir = "../../../resources/data";
+    appsDir = "/dist";
 
-var store = {hi: "test"};
+var store = {};
 
-var loadStore = function(callback) {
-  fs.readdir(appsDir, function(err, list) {
-    if (err) {
-      throw err;
-    }
+var loadStore = function() {
+  keyName = obj["n"] + "-" + obj["verc"];
+  store[keyName] = obj;
+  console.log(store)
+  // fs.readdir(appsDir, function(err, list) {
+  //   if (err) {
+  //     throw err;
+  //   }
 
-    for (var i = 0; i < list.length; i++) {
-      (function(i) {
-        addApp(list[i], function() {
-          if (i === list.length - 1) {
-            callback();
-          }
-        });
-      })(i);
-    }
-  });
+  //   for (var i = 0; i < list.length; i++) {
+  //     (function(i) {
+  //       console.log(i)
+  //       addApp(list[i], function() {
+  //         if (i === list.length - 1) {
+  //           callback();
+  //         }
+  //       });
+  //     })(i);
+  //   }
+  // });
 }
 
 var addApp = function(file, callback) {
   var path = appsDir + "/" + file;
+  console.log("path")
   fs.readFile(path, "utf8", function(err, data) {
+    console.log("path")
     if (err) {
       throw err;
     }
@@ -47,10 +53,8 @@ var removeApp = function(file, callback) {
 
 var todoStore = objectAssign({}, EventEmitter.prototype, {
   addChangeListener: function(callback) {
+    loadStore();
     this.on(CHANGE_EVENT, callback);
-    // loadStore(function() {
-    //   this.on(CHANGE_EVENT, callback);
-    // });
   },
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
